@@ -1,14 +1,14 @@
 import { Button } from "@headlessui/react";
 import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
-import AddressUser from "../../components/AdressUser";
+import AddressUser from "components/AdressUser";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
 
-import { texts } from "../../contains/texts";
-import formatVND from "../../utils/formatVND";
-import ProductRandom from "../../components/ProductRandom";
-import { authGetAddressAcc } from "../../redux/auth/authThunk";
+import { texts } from "contains/texts";
+import formatVND from "utils/formatVND";
+import ProductRandom from "components/ProductRandom";
+import { authGetAddressAcc } from "redux/auth/authThunk";
 
 function OrderView() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

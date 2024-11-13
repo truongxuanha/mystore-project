@@ -13,8 +13,8 @@ import { texts } from "../../../../../contains/texts";
 import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 import ButtonAction from "../../../../../customs/ButtonAction";
 import HeaderAdmin from "../components/HeaderAdmin";
-import { authGetAllAccount } from '../../../../../redux/auth/authThunk';
-
+import { authGetAllAccount } from "../../../../../redux/auth/authThunk";
+import { ActionAdminEnum } from "../../../../../types/admin.type";
 
 function AdminStaff() {
   const { all_accounts, totalAccount } = useAppSelector((state) => state.auth);
@@ -23,7 +23,7 @@ function AdminStaff() {
   const currentPage: number = parseInt(searchParams.get(PAGE.page) || "1");
   const dispatch = useAppDispatch();
   const [show, setShow] = useState<boolean>(false);
-  const [actionType, setActionType] = useState<"edit" | "delete" | "add" | "view" | null>(null);
+  const [actionType, setActionType] = useState<ActionAdminEnum>();
   const [currentStaff, setCurrentStaff] = useState<any>([]);
   useEffect(() => {
     dispatch(authGetAllAccount({ page: currentPage, permission: selectOption }));
@@ -36,25 +36,25 @@ function AdminStaff() {
 
   const handleEdit = (id: string | number) => {
     setShow(true);
-    setActionType("edit");
+    setActionType(ActionAdminEnum.EDIT);
     const acc = all_accounts.filter((acc) => acc.id === id);
     setCurrentStaff(acc[0]);
   };
   const handleAdd = () => {
     setShow(true);
-    setActionType("add");
+    setActionType(ActionAdminEnum.ADD);
     setCurrentStaff([]);
   };
   const handleDelete = (id: string | number) => {
     setShow(true);
-    setActionType("delete");
+    setActionType(ActionAdminEnum.DELETE);
     const acc = all_accounts.filter((acc) => acc.id === id);
     setCurrentStaff(acc[0]);
   };
 
   const handleView = (id: string | number) => {
     setShow(true);
-    setActionType("view");
+    setActionType(ActionAdminEnum.VIEW);
     const acc = all_accounts.filter((acc) => acc.id === id);
     setCurrentStaff(acc[0]);
   };

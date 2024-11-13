@@ -1,6 +1,6 @@
-import Sidebar from "./SlideBar";
-import { menuSideBar } from "../../../helpers/SidebarAdmin";
+import { menuSideBar } from "helpers/SidebarAdmin";
 import { Outlet } from "react-router-dom";
+import Sidebar from "./SlideBar";
 
 function Admin() {
   return (

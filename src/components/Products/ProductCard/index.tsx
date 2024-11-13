@@ -2,13 +2,13 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
 import { ProductsType } from "types";
-import formatVND from "../../../utils/formatVND";
+import formatVND from "utils/formatVND";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import useAddToCart from "../../../hooks/useAddCart";
-import { texts } from "../../../contains/texts";
-import { assets } from "../../../assets";
-import { PAGE } from "../../../contains";
-import ImageLazy from "../../../customs/ImageLazy";
+import useAddToCart from "hooks/useAddCart";
+import { texts } from "contains/texts";
+import { assets } from "assets";
+import { PAGE } from "contains";
+import ImageLazy from "customs/ImageLazy";
 
 export type ProductsProp = {
   product: ProductsType;

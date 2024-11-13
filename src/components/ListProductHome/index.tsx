@@ -1,14 +1,15 @@
 import { useState } from "react";
-import ProductCard from "../Products/ProductCard";
+
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { ProductsType } from "../../types";
-import LoadingBlock from "../../customs/LoadingBlock";
+import { ProductsType } from "types";
+import LoadingBlock from "customs/LoadingBlock";
+import ProductCard from "components/Products/ProductCard";
 
 type ListProductHomeProps = {
   data: ProductsType[];
   title: string;
   loading?: boolean;
-}
+};
 
 const ListProductHome = ({ data, title, loading }: ListProductHomeProps) => {
   const [activeIndex, setActiveIndex] = useState<number>(1);

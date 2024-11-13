@@ -1,8 +1,8 @@
 import { Button } from "@headlessui/react";
 import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import formatVND from "../../../utils/formatVND";
-import { texts } from "../../../contains/texts";
+import formatVND from "utils/formatVND";
+import { texts } from "contains/texts";
 type Props = {
   priceAfterDiscount: number;
   idItemCart: number;

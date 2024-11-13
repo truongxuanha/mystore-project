@@ -72,7 +72,11 @@ export const texts = {
     PRODUCT_NAME: "Tên sản phẩm",
     PRODUCT_ID: "Mã sản phẩm",
     MANUFACTURE: "Nhà cung cấp",
-    
+    PRICE: "Đơn giá (vnđ)",
+    DISCOUNT: "Chiết khấu (%)",
+    ORTHER_DISCOUNT: "Chiết khấu khác (%)",
+    QUANTITY: "Số lượng nhập",
+    REMAINING_QUANTITY: "Số lượng còn lại",
   },
   order: {
     NO_ADDRESS: "Bạn chưa có địa chỉ giao hàng!",
@@ -89,5 +93,20 @@ export const texts = {
   search: {
     RESULTS: "Kết quả tìm kiếm",
     NO_RESULTS: "Không tìm thấy sản phẩm nào",
+  },
+
+  errors: {
+    DELETE_ACCOUNT_SUCCESS: "Xóa tài khoản thành công!",
+    DELETE_ACCOUNT_FAILED: "Xóa tài khoản thất bại!",
+    ADD_ACCOUNT_SUCCESS: "Thêm tài khoản thành công!",
+    ADD_ACCOUNT_FAILED: "Thêm tài thất bại!",
+    EDIT_ACCOUNT_SUCCESS: "Sửa tài khoản thành công!",
+    EDIT_ACCOUNT_FAILED: "Sửa tài khoản thất bại!",
+    DELETE_PRODUCT_SUCCESS: "Xóa sản phẩm thành công!",
+    DELETE_PRODUCT_FAILED: "Xóa sản phẩm thất bại!",
+    ADD_PRODUCT_SUCCESS: "Thêm sản phẩm thành công!",
+    ADD_PRODUCT_FAILED: "Thêm sản phẩm thất bại!",
+    EDIT_PRODUCT_SUCCESS: "Sửa sản phẩm thành công!",
+    EDIT_PRODUCT_FAILED: "Sửa sản phẩm thất bại!",
   },
 };

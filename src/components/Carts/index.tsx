@@ -1,17 +1,17 @@
 import { useEffect, useMemo } from "react";
 import { Button } from "@headlessui/react";
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
 
-import { getProductByAccount, removeCartItem, updateCartItem } from "../../redux/cart/cartThunk";
-import formatVND from "../../utils/formatVND";
-import Loader from "../../components/Loader";
-import ProductRandom from "../../components/ProductRandom";
+import { getProductByAccount, removeCartItem, updateCartItem } from "redux/cart/cartThunk";
+import formatVND from "utils/formatVND";
+import Loader from "components/Loader";
+import ProductRandom from "components/ProductRandom";
 import CartItem from "./CartItem";
-import { texts } from "../../contains/texts";
-import { handleOrder } from "../../redux/order/orderSlice";
+import { texts } from "contains/texts";
+import { handleOrder } from "redux/order/orderSlice";
 import { useNavigate } from "react-router-dom";
-import { PAGE } from "../../contains";
-import Nodata from "../../customs/Nodata";
+import { PAGE } from "contains";
+import Nodata from "customs/Nodata";
 
 function Cart() {
   const dispatch = useAppDispatch();

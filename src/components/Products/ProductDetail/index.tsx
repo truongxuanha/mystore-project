@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import formatVND from "../../../utils/formatVND";
+import formatVND from "utils/formatVND";
 
-import Loader from "../../Loader";
 import { Button, Input } from "@headlessui/react";
-import useAddToCart from "../../../hooks/useAddCart";
+import useAddToCart from "hooks/useAddCart";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../redux/store";
-import { useAppSelector } from "../../../hooks/useAppDispatch";
-import ProductRandom from "../../../components/ProductRandom";
-import { assets } from "../../../assets";
-import { texts } from "../../../contains/texts";
+import { AppDispatch } from "redux/store";
+import { useAppSelector } from "hooks/useAppDispatch";
+import ProductRandom from "components/ProductRandom";
+import { assets } from "assets";
+import { texts } from "contains/texts";
 
-import ImageLazy from "../../../customs/ImageLazy";
+import ImageLazy from "customs/ImageLazy";
 import { ChatBubbleLeftRightIcon, ClockIcon, EllipsisHorizontalIcon, StarIcon } from "@heroicons/react/24/outline";
-import { getCommentByIdProductThunk, getInFoProducts } from "../../../redux/product/productThunk";
-import { handleOrder } from "../../../redux/order/orderSlice";
+import { getCommentByIdProductThunk, getInFoProducts } from "redux/product/productThunk";
+import { handleOrder } from "redux/order/orderSlice";
+import Loader from "components/Loader";
 
 export type ProductOrderType = {
   id_product: string | number;

@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from "../hooks/useAppDispatch";
-import { toastifySuccess, toastifyWarning } from "../utils/toastify";
-import { getProductByAccount, postCreateCart } from "../redux/cart/cartThunk";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
+import { toastifySuccess, toastifyWarning } from "utils/toastify";
+import { getProductByAccount, postCreateCart } from "redux/cart/cartThunk";
 import { CreateCartType } from "types";
 
 const useAddToCart = () => {

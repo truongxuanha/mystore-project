@@ -1,15 +1,14 @@
-import HotProducts from "../HotProducts";
-import Banner from "../Banners";
-
-import ProductNews from "../ProductNews";
-import Manufacture from "../Manufacture";
-import { assets } from "../../assets/index";
+import { assets } from "assets/index";
 import { BannerLeft, BannerRight } from "./styled";
-import ImageLazy from "../../customs/ImageLazy";
+import ImageLazy from "customs/ImageLazy";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Manufacture from "components/Manufacture";
+import Banner from "components/Banners";
+import HotProducts from "components/HotProducts";
+import ProductNews from "components/ProductNews";
 
 function Home() {
   const [isShow, setIsShow] = useState(true);

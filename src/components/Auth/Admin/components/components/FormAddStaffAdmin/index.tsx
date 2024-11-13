@@ -11,11 +11,13 @@ import { schemaRegister } from "../../../../../../utils/schema";
 import Button from "../../../../../../customs/Button";
 import { authDelete, authRegister, authUpdate } from "../../../../../../redux/auth/authThunk";
 import { InitialRegisterState } from "../../../../../../redux/auth/type";
+import { ActionAdminEnum } from "../../../../../../types/admin.type";
+import { texts } from "../../../../../../contains/texts";
 
 type Props = {
   setShow: (value: boolean) => void;
   initialData?: InitialRegisterState;
-  actionType: "add" | "edit" | "delete" | "view" | null;
+  actionType?: ActionAdminEnum;
 };
 
 function FormAddStafAdmin({ setShow, initialData, actionType }: Props) {
@@ -42,37 +44,37 @@ function FormAddStafAdmin({ setShow, initialData, actionType }: Props) {
   const onSubmit: SubmitHandler<InitialRegisterState> = async (formValue) => {
     let resultsAction;
 
-    if (actionType === "add") {
+    if (actionType === ActionAdminEnum.ADD) {
       resultsAction = await dispatch(authRegister(formValue));
       if (authRegister.rejected.match(resultsAction)) {
-        toastifyWarning((resultsAction.payload as string) || "Thêm tài khoản thất bại!");
+        toastifyWarning((resultsAction.payload as string) || texts.errors.ADD_ACCOUNT_FAILED);
         return;
       }
-      toastifySuccess("Thêm tài khoản thành công!");
-    } else if (actionType === "edit") {
+      toastifySuccess(texts.errors.ADD_ACCOUNT_SUCCESS);
+    } else if (actionType === ActionAdminEnum.EDIT) {
       const updatedData = {
         ...initialData,
         ...formValue,
       };
       resultsAction = await dispatch(authUpdate(updatedData));
       if (authUpdate.rejected.match(resultsAction)) {
-        toastifyWarning((resultsAction.payload as string) || "Sửa tài khoản thất bại!");
+        toastifyWarning((resultsAction.payload as string) || texts.errors.EDIT_ACCOUNT_FAILED);
         return;
       }
-      toastifySuccess("Sửa tài khoản thành công!");
-    } else if (actionType === "delete" || actionType === "view") {
+      toastifySuccess(texts.errors.EDIT_ACCOUNT_SUCCESS);
+    } else if (actionType === ActionAdminEnum.DELETE) {
       resultsAction = await dispatch(authDelete(formValue));
       if (authDelete.rejected.match(resultsAction)) {
-        toastifyWarning((resultsAction.payload as string) || "Xóa tài khoản thất bại!");
+        toastifyWarning((resultsAction.payload as string) || texts.errors.DELETE_ACCOUNT_FAILED);
         return;
       }
-      toastifySuccess("Xóa tài khoản thành công!");
+      toastifySuccess(texts.errors.DELETE_ACCOUNT_SUCCESS);
     }
 
     reset();
     setShow(false);
   };
-  const isDisable = actionType === "delete" || actionType === "view";
+  const isDisable = actionType === ActionAdminEnum.DELETE || actionType === ActionAdminEnum.VIEW;
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex justify-center items-center z-50">
       <div className="bg-white w-4/5 p-5 rounded-md flex flex-col">

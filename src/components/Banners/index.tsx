@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
-import { getBanners } from "../../redux/home/homeThunk";
-import { INTERVAL_DURATION } from "../../contains";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
+import { getBanners } from "redux/home/homeThunk";
+import { INTERVAL_DURATION } from "contains";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import LoadingBlock from "../../customs/LoadingBlock";
-import Button from "../../customs/Button";
+import LoadingBlock from "customs/LoadingBlock";
+import Button from "customs/Button";
 
 const Banner: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);

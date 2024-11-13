@@ -9,12 +9,14 @@ import Button from "../../../../../../customs/Button";
 import { CreateProductType } from "../../../../../../redux/product/type";
 
 import { authUpdate } from "../../../../../../redux/auth/authThunk";
-import { createProductThunk, deleteProductThunk, editProductThunk, getProducts } from '../../../../../../redux/product/productThunk';
+import { createProductThunk, deleteProductThunk, editProductThunk, getProducts } from "../../../../../../redux/product/productThunk";
+import { ActionAdminEnum } from "../../../../../../types/admin.type";
+import { texts } from "../../../../../../contains/texts";
 
 type Props = {
   setShow: (value: boolean) => void;
   initialData?: any;
-  actionType: "add" | "edit" | "delete" | "view" | null;
+  actionType?: ActionAdminEnum;
 };
 
 function FormAddProductAdmin({ setShow, initialData, actionType }: Props) {
@@ -41,7 +43,7 @@ function FormAddProductAdmin({ setShow, initialData, actionType }: Props) {
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<CreateProductType> = async (formValue) => {
     let resultsAction;
-    if (actionType === "add") {
+    if (actionType === ActionAdminEnum.ADD) {
       formValue.thumbnail = formValue.thumbnail[0];
       const thumbnailFile = formValue.thumbnail?.[0];
       if (!!thumbnailFile) {
@@ -49,12 +51,12 @@ function FormAddProductAdmin({ setShow, initialData, actionType }: Props) {
       }
       resultsAction = await dispatch(createProductThunk(formValue));
       if (createProductThunk.rejected.match(resultsAction)) {
-        toastifyWarning((resultsAction.payload as string) || "Thêm sản phẩm thất bại!");
+        toastifyWarning((resultsAction.payload as string) || texts.errors.ADD_PRODUCT_FAILED);
         return;
       }
       dispatch(getProducts({}));
-      toastifySuccess("Thêm tài khoản thành công!");
-    } else if (actionType === "edit") {
+      toastifySuccess(texts.errors.ADD_PRODUCT_SUCCESS);
+    } else if (actionType === ActionAdminEnum.EDIT) {
       if (typeof formValue.thumbnail === "object") {
         formValue.thumbnail = formValue.thumbnail[0];
       }
@@ -64,19 +66,19 @@ function FormAddProductAdmin({ setShow, initialData, actionType }: Props) {
       };
       resultsAction = await dispatch(editProductThunk(updatedData));
       if (authUpdate.rejected.match(resultsAction)) {
-        toastifyWarning((resultsAction.payload as string) || "Sửa sản phẩm thất bại!");
+        toastifyWarning((resultsAction.payload as string) || texts.errors.EDIT_PRODUCT_FAILED);
         return;
       }
       dispatch(getProducts({}));
-      toastifySuccess("Sửa sản phẩm thành công!");
-    } else if (actionType === "delete") {
+      toastifySuccess(texts.errors.EDIT_PRODUCT_SUCCESS);
+    } else if (actionType === ActionAdminEnum.DELETE) {
       resultsAction = await dispatch(deleteProductThunk(initialData.product_id));
       if (deleteProductThunk.rejected.match(resultsAction)) {
-        toastifyWarning((resultsAction.payload as string) || "Xóa sản phẩm thất bại!");
+        toastifyWarning((resultsAction.payload as string) || texts.errors.DELETE_PRODUCT_FAILED);
         return;
       }
       dispatch(getProducts({}));
-      toastifySuccess("Xóa sản phẩm thành công!");
+      toastifySuccess(texts.errors.DELETE_PRODUCT_SUCCESS);
     } else {
       dispatch(getProducts({}));
     }
@@ -84,7 +86,7 @@ function FormAddProductAdmin({ setShow, initialData, actionType }: Props) {
     reset();
     setShow(false);
   };
-  const isDisable = actionType === "delete" || actionType === "view";
+  const isDisable = actionType === ActionAdminEnum.DELETE || actionType === ActionAdminEnum.VIEW;
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex justify-center items-center z-50">
       <div className="bg-white w-4/5 p-5 rounded-md flex flex-col">

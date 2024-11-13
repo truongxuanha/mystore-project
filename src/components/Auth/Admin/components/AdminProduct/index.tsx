@@ -10,6 +10,7 @@ import ButtonAction from "../../../../../customs/ButtonAction";
 import Pagination from "../../../../../customs/Pagination";
 import useGetSearchParams from "../../../../../hooks/useGetSearchParams";
 import { getProducts } from "../../../../../redux/product/productThunk";
+import { ActionAdminEnum } from "../../../../../types/admin.type";
 
 const option = [
   { option_id: 1, title: texts.list_staff.ALL_STAFF, value: "all" },
@@ -21,7 +22,7 @@ function AdminProduct() {
   const dispatch = useAppDispatch();
   const { products, totalPage } = useAppSelector((state) => state.product);
   const [show, setShow] = useState<boolean>(false);
-  const [actionType, setActionType] = useState<"edit" | "delete" | "add" | "view" | null>(null);
+  const [actionType, setActionType] = useState<ActionAdminEnum>();
   const [currentProduct, setCurrentProduct] = useState<any>();
   const page = useGetSearchParams(["page"]).page || 1;
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,7 +36,6 @@ function AdminProduct() {
     if (!searchQuery.trim()) return;
     dispatch(getProducts({ query: searchQuery, itemsPerPage: 5 }));
   };
-
   useEffect(() => {
     dispatch(getProducts({ currentPage: page, itemsPerPage: 5 }));
   }, [dispatch, page]);
@@ -43,11 +43,11 @@ function AdminProduct() {
     texts.product.PRODUCT_ID,
     texts.product.PRODUCT_NAME,
     texts.product.MANUFACTURE,
-    "Đơn giá (vnđ)",
-    "Chiết khấu (%)",
-    "Chiết khấu khác (%)",
-    "Số lượng nhập",
-    "Số lượng còn lại",
+    texts.product.PRICE,
+    texts.product.DISCOUNT,
+    texts.product.ORTHER_DISCOUNT,
+    texts.product.QUANTITY,
+    texts.product.REMAINING_QUANTITY,
     texts.infor_account.ACTION,
   ];
   const rowProduct = products?.map((product) => [
@@ -62,25 +62,25 @@ function AdminProduct() {
   ]);
   const handleEdit = (id: number | string) => {
     setShow(true);
-    setActionType("edit");
+    setActionType(ActionAdminEnum.EDIT);
     const acc = products.filter((acc) => acc.product_id === id);
     setCurrentProduct(acc[0]);
   };
   const handleAdd = () => {
     setShow(true);
-    setActionType("add");
+    setActionType(ActionAdminEnum.ADD);
     setCurrentProduct([]);
   };
   const handleDelete = (id: number | string) => {
     setShow(true);
-    setActionType("delete");
+    setActionType(ActionAdminEnum.DELETE);
     const acc = products.filter((acc) => acc.product_id === id);
     setCurrentProduct(acc[0]);
   };
 
   const handleView = (id: number | string) => {
     setShow(true);
-    setActionType("view");
+    setActionType(ActionAdminEnum.VIEW);
     const acc = products.filter((acc) => acc.product_id === id);
     setCurrentProduct(acc[0]);
   };

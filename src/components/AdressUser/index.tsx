@@ -1,11 +1,11 @@
 import { Button } from "@headlessui/react";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useAppDispatch } from "hooks/useAppDispatch";
 import { useState, useEffect } from "react";
-import { authCreateAddressThunk, authGetAddressAcc } from "../../redux/auth/authThunk";
+import { authCreateAddressThunk, authGetAddressAcc } from "redux/auth/authThunk";
 
 import dayjs from "dayjs";
-import { texts } from "../../contains/texts";
-import { AddressStateType } from "../../redux/auth/type";
+import { texts } from "contains/texts";
+import { AddressStateType } from "redux/auth/type";
 
 type AddressComponent = {
   code: number | string;

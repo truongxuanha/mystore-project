@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
 import { useEffect } from "react";
-import { getManuThunk } from "../../redux/manufacture/manuThunk";
+import { getManuThunk } from "redux/manufacture/manuThunk";
 import { useNavigate } from "react-router-dom";
 
-import { getProducts } from "../../redux/product/productThunk";
+import { getProducts } from "redux/product/productThunk";
 
 function Manufacture() {
   const dispatch = useAppDispatch();

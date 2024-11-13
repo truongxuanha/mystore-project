@@ -1,13 +1,11 @@
 import { memo, useEffect, useRef, useState } from "react";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
-
-import SearchResults from "../SearchResult";
-
-import useDebounce from "../../hooks/useDebouncs";
+import useDebounce from "hooks/useDebouncs";
 import { Input } from "@headlessui/react";
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
-import { fetchSearchResults } from "../../redux/search/searchThunk";
-import { texts } from "../../contains/texts";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
+import { fetchSearchResults } from "redux/search/searchThunk";
+import { texts } from "contains/texts";
+import SearchResults from "components/SearchResult";
 
 export type SearchProps = {
   handleCloseNav?: (open: boolean) => void;

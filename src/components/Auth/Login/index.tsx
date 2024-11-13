@@ -2,15 +2,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks/useAppDispatch";
-import Loader from "../../Loader";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { toastifySuccess, toastifyWarning } from "../../../utils/toastify";
+import { toastifySuccess, toastifyWarning } from "utils/toastify";
 import { Button, Input } from "@headlessui/react";
-import { schemaLogin } from "../../../utils/schema";
+import { schemaLogin } from "utils/schema";
 import { authLogin } from "redux/auth/authThunk";
+import Loader from "components/Loader";
 
 type FormValues = {
   value: string;

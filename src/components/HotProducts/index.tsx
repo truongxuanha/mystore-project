@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
 
-import { texts } from "../../contains/texts";
-import ListProductHome from "../../components/ListProductHome";
-import { getHotProducts } from "../../redux/product/productThunk";
+import { texts } from "contains/texts";
+import ListProductHome from "components/ListProductHome";
+import { getHotProducts } from "redux/product/productThunk";
 
 const HotProducts: React.FC = () => {
   const dispatch = useAppDispatch();

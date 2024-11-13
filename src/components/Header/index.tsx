@@ -13,16 +13,16 @@ import {
 } from "@heroicons/react/24/outline";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import { logout } from "../../redux/auth/authSlice";
-import logo from "../../assets/logo.png";
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
-import { toastifyWarning } from "../../utils/toastify";
+import { logout } from "redux/auth/authSlice";
+import logo from "assets/logo.png";
+import { useAppDispatch, useAppSelector } from "hooks/useAppDispatch";
+import { toastifyWarning } from "utils/toastify";
 
 import Search from "../Search";
-import { getProductByAccount } from "../../redux/cart/cartThunk";
-import { clearCart } from "../../redux/cart/cartSlice";
-import { navLink } from "../../routes/app";
-import { texts } from "../../contains/texts";
+import { getProductByAccount } from "redux/cart/cartThunk";
+import { clearCart } from "redux/cart/cartSlice";
+import { navLink } from "routes/app";
+import { texts } from "contains/texts";
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,22 +35,17 @@ function Header() {
   const { currentUser } = useAppSelector((state) => state.auth);
   const { cartLength } = useAppSelector((state) => state.cart);
 
-  // Xử lý đăng xuất
   const handleLogout = () => {
     dispatch(logout());
     dispatch(clearCart());
     setMobileMenuOpen(false);
     navigate("/login");
   };
-
-  // Lấy thông tin sản phẩm của tài khoản hiện tại
   useEffect(() => {
     if (currentUser) {
       dispatch(getProductByAccount());
     }
   }, [dispatch, currentUser]);
-
-  // Xử lý mở giỏ hàng
   const handleCart = () => {
     setMobileMenuOpen(false);
     if (!currentUser) {
@@ -62,7 +57,6 @@ function Header() {
       sessionStorage.removeItem("orderItems");
     }
   }, []);
-  // Xử lý đóng menu tài khoản khi click ngoài vùng
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (accountMenuRef.current && !accountMenuRef.current.contains(event.target as Node)) {
